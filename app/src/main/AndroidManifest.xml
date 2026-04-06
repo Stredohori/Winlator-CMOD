@@ -35,8 +35,8 @@
     <uses-permission
         android:name="android.permission.WRITE_SECURE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="com.samsung.android.game.permission.GAME_SERVICE"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-
     <application
         android:label="CMOD"
         android:icon="@mipmap/ic_launcher"
@@ -50,6 +50,16 @@
         android:supportsRtl="true"
         tools:ignore="DataExtractionRules,GoogleAppIndexingWarning">
 
+        <!-- Meta-data para Game Booster -->
+        <meta-data android:name="com.samsung.android.keepalive.density" android:value="true"/>
+        <meta-data android:name="com.sec.android.support.multiwindow" android:value="true"/>
+        <meta-data
+            android:name="com.samsung.android.multidisplay.keep_process_alive"
+            android:value="false"/>
+        <meta-data
+            android:name="android.allow_multiple_resumed_activities"
+            android:value="true" />
+
         <!-- Main activity -->
         <activity
             android:name="com.winlator.cmod.MainActivity"
@@ -60,14 +70,15 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
             </intent-filter>
+            <meta-data android:name="isGame" android:value="true"/>
         </activity>
 
         <activity
             android:name="com.winlator.cmod.BigPictureActivity"
             android:theme="@style/Theme.AppCompat"
             android:exported="false" />
-
 
         <activity
             android:name="com.winlator.cmod.XServerDisplayActivity"
@@ -131,7 +142,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <!-- Provider for Winlator’s DocumentProvider or similar usage -->
+        <!-- Provider for Winlator's DocumentProvider or similar usage -->
         <provider
             android:name=".core.WinlatorFilesProvider"
             android:authorities="com.winlator.cmod.core.WinlatorFilesProvider"
@@ -149,15 +160,5 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="true" />
 
-        <meta-data
-            android:name="com.samsung.android.multidisplay.keep_process_alive"
-            android:value="false"/>
-        <meta-data
-            android:name="android.allow_multiple_resumed_activities"
-            android:value="true" />
-        >
-
     </application>
 </manifest>
-
-
